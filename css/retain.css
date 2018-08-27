@@ -1,7 +1,9 @@
 *,
 *:before,
 *:after {box-sizing: border-box;}
-
+/* 
+css for styling
+*/
 .new-note-form {
     margin-bottom: 15px;
 }
