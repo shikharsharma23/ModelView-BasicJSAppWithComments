@@ -24,13 +24,15 @@ $(function(){
     var octopus = { 
         addNewNote: function(noteStr) { // functionaility : add new note
             model.add({ // call the model function to store node
-                content: noteStr
+                content: noteStr, // store note content
+                dateSubmitted :  Date.now() //  store data
             });
             view.render(); // call the view function to update view
         },
  
         getNotes: function() { // list all nodes . 
-            return model.getAllNotes(); // cal the model function to get all nodes
+            return model.getAllNotes().reverse(); // cal the model function to get all nodes. Ocopus here can control order of preentation on view 
+            // by just filtering on data supplied by model
         },
 
         init: function() { // init function
@@ -56,7 +58,7 @@ $(function(){
         render: function(){ // render function
             var htmlStr = '';
             octopus.getNotes().forEach(function(note){
-                htmlStr += '<li class="note">'+
+                htmlStr += '<li class="note">'+ '<span  class="note-date">' + new Date(note.dateSubmitted).toString() + '</span>' +   // add date to be shown
                         note.content +
                     '</li>';
             });
